@@ -1,4 +1,4 @@
-.App {
+body {
   text-align: center;
   background-color: #222;
   /* height: 150px; */
@@ -9,7 +9,11 @@
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+  height: 25px;
+}
+
+.croosOut {
+  text-decoration: line-through;
 }
 
 .App-title {
@@ -21,7 +25,15 @@
 } */
 
 .fas, .far {
-  padding: 12px;
+  margin: 12px;
+}
+
+.fas:hover {
+  color: rgb(24, 197, 24);
+}
+
+.far:hover {
+  color: red;
 }
 
 @keyframes App-logo-spin {
