@@ -9,14 +9,18 @@ class FromAddList extends React.Component {
 
   handleAdd() {
     if (this.textInput.value.trim().length !==0) {
-      this.props.addIngredient(this.textInput.value)
+      this.props.addIngredient(this.textInput.value);
+      this.textInput.value = '';
+      this.textInput.focus();
     } else {
-      alert('Escribe un ingrediente :)')
+      alert('Escribe un ingrediente :)');
+      this.textInput.focus();
     }
   }
 
   handlClear() {
     this.textInput.value = '';
+    this.textInput.focus();
   }
 
   render() {

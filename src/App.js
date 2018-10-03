@@ -2,18 +2,19 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import FormAddList from './components/FormAddList';
-import ListIngredients from './components/ListIngredients'
+import ListIngredients from './components/ListIngredients';
 
 class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       list: [
         { id: 1, ingredient: 'leche', currentToDo: false },
         { id: 2, ingredient: 'azucar', currentToDo: false }
       ]
     }
-    this.addIngredient = this.addIngredient.bind(this)
+    this.addIngredient = this.addIngredient.bind(this);
+    this.removeIngredient = this.removeIngredient.bind(this);
   }
 
   addIngredient(ingredient) {
@@ -26,6 +27,9 @@ class App extends Component {
     this.setState({ list });
   }
 
+  removeIngredient (id) {
+    id.remove();
+  }
 
   render() {
     return (
@@ -39,7 +43,10 @@ class App extends Component {
             <ListIngredients
               ingredient={ingredient.ingredient}
               idIngredient={ingredient.id}
-              key={ingredient.id} />
+              key={ingredient.id}
+              cross={ingredient.currentToDo}
+              remove={this.removeIngredient}
+               />
           )
         })}
       </div>
