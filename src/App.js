@@ -1,55 +1,87 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React, { Component, Fragment } from 'react';
 import './App.css';
 import FormAddList from './components/FormAddList';
 import ListIngredients from './components/ListIngredients';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      list: [
-        { id: 1, ingredient: 'leche', currentToDo: false },
-        { id: 2, ingredient: 'azucar', currentToDo: false }
-      ]
-    }
-    this.addIngredient = this.addIngredient.bind(this);
-    this.removeIngredient = this.removeIngredient.bind(this);
+  state = {
+    list: [
+      {
+        ingredient: 'Tarea de mate',
+        currentToDo: false
+      },
+      {
+        ingredient: 'Comprar comida',
+        currentToDo: false
+      }
+    ]
   }
 
-  addIngredient(ingredient) {
+  addIngredient = (ingredient) => {
     const { list } = this.state;
-    list.push({
-      id: list.length + 1,
-      ingredient,
-      currentToDo: false
-    })
+
+    if (ingredient.value.trim().length !== 0) {
+      list.push({
+        ingredient: ingredient.value,
+        currentToDo: false
+      })
+
+      ingredient.value = '';
+      ingredient.focus();
+    } else {
+      alert('Escribe un ingrediente :)');
+      ingredient.focus();
+    }
+
     this.setState({ list });
   }
 
-  removeIngredient (id) {
-    id.remove();
+  removeIngredient = (id) => {
+    const { list } = this.state;
+    list.splice(id, 1);
+    this.setState({ list });
+  }
+
+  crossIngredient = (id) => {
+    const { list } = this.state;
+    list[id].currentToDo = !list[id].currentToDo;
+    this.setState({ list })
+  }
+
+  removeCrossIngredient = () => {
+    const { list } = this.state;
+    const ingredientsNoCross = list.filter(({ currentToDo }) => currentToDo === false);
+    this.setState({ list: ingredientsNoCross });
   }
 
   render() {
+    const { list } = this.state;
+
     return (
-      <div className="App">
-        <h1 className="App-title">To-Do List<img src={logo} className="App-logo" alt="logo" /></h1>
-        <p>Ingredientes para un keke</p>
-        <FormAddList
-          addIngredient={this.addIngredient} />
-        {this.state.list.map(ingredient => {
+      <Fragment>
+        <header>
+          <h1 className="">To-Do List</h1>
+        </header>
+        <section>
+          <h4 className="margin-b">Agrega una tarea</h4>
+          <FormAddList
+            addIngredient={this.addIngredient}
+            removeCross={this.removeCrossIngredient}
+          />
+        </section>
+        {list.map(({ ingredient, currentToDo }, id) => {
           return (
             <ListIngredients
-              ingredient={ingredient.ingredient}
-              idIngredient={ingredient.id}
-              key={ingredient.id}
-              cross={ingredient.currentToDo}
+              ingredient={ingredient}
+              id={id}
+              key={id}
+              current={currentToDo}
+              cross={this.crossIngredient}
               remove={this.removeIngredient}
-               />
+            />
           )
         })}
-      </div>
+      </Fragment>
     );
   }
 }

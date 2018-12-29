@@ -1,31 +1,41 @@
 body {
   text-align: center;
   background-color: #222;
-  /* height: 150px; */
-  padding: 20px;
   color: white;
-  /* height: ; */
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 25px;
+input {
+  height: 4vh;
+  border: 1px solid #222;
+  border-radius: 5px;  
+  font-size: 0.85em;
+  padding: 0 0.5rem;
 }
 
-.croosOut {
+.croos-out {
   text-decoration: line-through;
 }
 
-.App-title {
-  font-size: 1.5em;
+.fas, .far {
+  padding: 0 1rem;
+  font-size: 1.25em;
 }
 
-/* .App-intro {
-  font-size: large;
-} */
+.margin {
+  margin: 1.1rem 0;
+}
 
-.fas, .far {
-  margin: 12px;
+.margin-b {
+  margin-bottom: 0.7rem;
+}
+
+.display-flex {
+  display: flex;
+  justify-content: center;
+}
+
+.border-right {
+  border-right: 2px solid white;
 }
 
 .fas:hover {
@@ -36,7 +46,3 @@ body {
   color: red;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
