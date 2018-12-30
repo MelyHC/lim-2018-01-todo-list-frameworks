@@ -29,7 +29,7 @@ class App extends Component {
       ingredient.value = '';
       ingredient.focus();
     } else {
-      alert('Escribe un ingrediente :)');
+      alert('Escribe una tarea :)');
       ingredient.focus();
     }
 
